@@ -1,7 +1,9 @@
 # n-queens-bitwise-solution
 This repo is made for the subject CSEN5336: Analysis of Algorithm project solution. The main reference is taken from the blog post of ***Greg Trowbridge***  ( *Software Engineer* from *Uber* ) on N-queens problem solution.
 
-**Project Title**: *A Project On Optimized N-Queens Counting Algorithm And Implementation In Javascript* 
+**Project Title**: <abbr>*A Project On Optimized N-Queens Counting Algorithm And Implementation In Javascript* </abbr*A>
+
+[TOCM]
 
 ### Some overview on N-Queens Problem:
 - N-queens is very well-known problem in the community of the computer science in which we need to find how can we fix N-queens on the N X N chess board without any of them attacking other.
@@ -70,3 +72,7 @@ For N=4, `col` having a value of `0010` would mean that the 3rd column is al
 | 14|365596   |  667 ms |
 | 15| 2279184  | 4077 ms  |
 
+### Conclusion:
+...and that's pretty much it! The code loops through, recursively trying out different valid positions and quickly eliminating invalid solutions.
+
+Because invalid solutions are ignored so quickly (because the while loop will end), and because we use bitwise operators for nearly all calculations, the result is a very fast, very efficient algorithm for counting the number of solutions to the N queens problem!
