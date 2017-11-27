@@ -1,9 +1,8 @@
 # n-queens-bitwise-solution
 This repo is made for the subject CSEN5336: Analysis of Algorithm project solution. The main reference is taken from the blog post of ***Greg Trowbridge***  ( *Software Engineer* from *Uber* ) on N-queens problem solution.
 
-**Project Title**: <abbr>*A Project On Optimized N-Queens Counting Algorithm And Implementation In Javascript* </abbr*A>
+**Project Title**: *A Project On Optimized N-Queens Counting Algorithm And Implementation In Javascript*
 
-[TOCM]
 
 ### Some overview on N-Queens Problem:
 - N-queens is very well-known problem in the community of the computer science in which we need to find how can we fix N-queens on the N X N chess board without any of them attacking other.
