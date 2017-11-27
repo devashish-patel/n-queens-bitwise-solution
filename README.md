@@ -67,7 +67,7 @@ For N=4, `col` having a value of `0010` would mean that the 3rd column is al
 | 10|724   | 1 ms  |
 | 11|2680   |  6 ms |
 | 12|14200   | 24 ms  |
-| 13|73712   |  114ms |
+| 13|73712   |  114 ms |
 | 14|365596   |  667 ms |
 | 15| 2279184  | 4077 ms  |
 
