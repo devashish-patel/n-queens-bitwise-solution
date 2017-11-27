@@ -28,30 +28,31 @@ c) Right diagonal doesn’t have more than one queen
 o	For N=4, `col` having a value of `0010` would mean that the 3rd column is already occupied by a queen
 
 - **THE DONE VARIEBLE**
-o	The "done" variable simply allows me to not worry about any bits beyond the Nth. Most computers are either 32 bits or 64 bits, so in reality, all integers are stored with that many bits. done simply has a bit sequence with 1 for every entry up to the Nth. For example, when N=5, done will equal 11111.
+ - The "done" variable simply allows me to not worry about any bits beyond the Nth. Most computers are either 32 bits or 64 bits, so in reality, all integers are stored with that many bits. done simply has a bit sequence with 1 for every entry up to the Nth. For example, when N=5, done will equal 11111.
 
 - **INNER RECURSION FUNCTION**
-o	First of all I’m calling innerRecursion(0, 0, 0), that means I’m calling function with all arguments from position 0. If N=4, we can say all arguments being equal to 0000. Means we haven’t placed any queens yet.
+ - First of all I’m calling innerRecursion(0, 0, 0), that means I’m calling function with all arguments from position 0. If N=4, we can say all arguments being equal to 0000. Means we haven’t placed any queens yet.
 
 - **THE FIRST IF STATEMENT**
-o	This is a base condition for the function which checks whether the solution is found or not!!
-o	It checks it whether all the columns are occupied or not in each calling of function.
-o	Our algorithm never places queens wrong so we can check if all columns are filled then we have a valid solution.
+ - This is a base condition for the function which checks whether the solution is found or not!!
+ - It checks it whether all the columns are occupied or not in each calling of function.
+ - Our algorithm never places queens wrong so we can check if all columns are filled then we have a valid solution.
+ 
 - **CONST POSS**
-o	The poss variable shows the columns in the current row which are not under attack of any queen.
-o	Suppose after some iterations we have leftDia = 0001, rightDia = 0101, col = 1001 and we are doing OR operation on them so we’ll get 1101 and at last by adding ~ we are flipping the bits so we’ll get 0010.
+ - The poss variable shows the columns in the current row which are not under attack of any queen.
+ - Suppose after some iterations we have leftDia = 0001, rightDia = 0101, col = 1001 and we are doing OR operation on them so we’ll get 1101 and at last by adding ~ we are flipping the bits so we’ll get 0010.
 
 - **FIRST TWO STATEMENTS IN THE WHILE LOOP**
-o	First statement `let bit = poss & -poss` stores the first available position means first non-zero position from the poss and stores it in `bit`.
-o	So we are placing our queen on that available position, so the next statement will mark that position as occupied and change the bit as ‘1’.
+ - First statement `let bit = poss & -poss` stores the first available position means first non-zero position from the poss and stores it in `bit`.
+ - So we are placing our queen on that available position, so the next statement will mark that position as occupied and change the bit as ‘1’.
 
 - **LAST STATEMENT IN THE WHILE LOOP**
-o	` innerRecursion( (leftDia|bit) >> 1, col | bit, ( rightDia | bit) << 1)` as a my point of view this last statement is most difficult to be understood in this entire function so let’s first break it to understand.
-o	`>>1` and `<<1` are the right shift and left shift operators respectively which moves a bit to right or left. `(rightDia | bit) >> 1` means combine `rightDia` and bit apply OR operation and then left shift by 1 bit.
-o	More specifically, if `rightDia` is 0001 (meaning that the top-right-to-bottom-left diagonal through column 4 of the current row is occupied), and bit is 0100 (meaning that we are planning to place a queen in column 2 of the current row), `(rd|bit)` results in 0101 (meaning that after we place a queen in column 2 of the current row, the second and the fourth top-right-to-bottom-left diagonals will be occupied).
-o	Now, if add in the `<<` operator, we get `(rd|bit)<<1`, which takes the 0101 we worked out in our previous bullet point, and moves everything to the left by one. The result, therefore, is 1010.
-o	*Now important question is why we are shifting all these values?*
-o	The answer is when we put a queen on a square we move down to the different rows at that time we need our left and right diagonals to be up to date.
+ - ` innerRecursion( (leftDia|bit) >> 1, col | bit, ( rightDia | bit) << 1)` as a my point of view this last statement is most difficult to be understood in this entire function so let’s first break it to understand.
+ - `>>1` and `<<1` are the right shift and left shift operators respectively which moves a bit to right or left. `(rightDia | bit) >> 1` means combine `rightDia` and bit apply OR operation and then left shift by 1 bit.
+ - More specifically, if `rightDia` is 0001 (meaning that the top-right-to-bottom-left diagonal through column 4 of the current row is occupied), and bit is 0100 (meaning that we are planning to place a queen in column 2 of the current row), `(rd|bit)` results in 0101 (meaning that after we place a queen in column 2 of the current row, the second and the fourth top-right-to-bottom-left diagonals will be occupied).
+ - Now, if add in the `<<` operator, we get `(rd|bit)<<1`, which takes the 0101 we worked out in our previous bullet point, and moves everything to the left by one. The result, therefore, is 1010.
+ - *Now important question is why we are shifting all these values?*
+ - The answer is when we put a queen on a square we move down to the different rows at that time we need our left and right diagonals to be up to date.
 
 ### Results:
 | N  | # of Solution  | Estimated Timing  |
