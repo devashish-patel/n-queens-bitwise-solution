@@ -41,16 +41,16 @@ For N=4, `col` having a value of `0010` would mean that the 3rd column is al
  
 #####  **CONST POSS** _(Line: 20)_
  - The poss variable shows the columns in the current row which are not under attack of any queen.
- - Suppose after some iterations we have `leftDia` = `0001`, `rightDia` = `0101`, col = 1001 and we are doing OR operation on them so we’ll get `1101` and at last by adding `~` we are flipping the bits so we’ll get `0010`.
+ - Suppose after some iterations we have `leftDia` = `0001`, `rightDia` = `0101`, col = `1001` and we are doing OR operation on them so we’ll get `1101` and at last by adding `~` we are flipping the bits so we’ll get `0010`.
 
 #####  **FIRST TWO STATEMENTS IN THE WHILE LOOP** _(Lines: 25 & 26)_
  - First statement `let bit = poss & -poss` stores the first available position means first non-zero position from the poss and stores it in `bit`.
  - So we are placing our queen on that available position, so the next statement `poss -= bit` will mark that position as occupied and change the bit as ‘1’.
 
 #####  **LAST STATEMENT IN THE WHILE LOOP** _(Line: 27)_
- - ` innerRecursion( (leftDia|bit) >> 1, col | bit, ( rightDia | bit) << 1)` as a my point of view this last statement is most difficult to be understood in this entire function so let’s first break it to understand.
- - `>>1` and `<<1` are the right shift and left shift operators respectively which moves a bit to right or left. `(rightDia | bit) >> 1` means combine `rightDia` and bit apply OR operation and then left shift by 1 bit.
- - More specifically, if `rightDia` is `0001` (meaning that the top-right-to-bottom-left diagonal through column 4 of the current row is occupied), and bit is `0100` (meaning that we are planning to place a queen in column 2 of the current row), `(rd|bit)` results in `0101` (meaning that after we place a queen in column 2 of the current row, the second and the fourth top-right-to-bottom-left diagonals will be occupied).
+ - ` innerRecursion( (leftDia | bit) >> 1, col | bit, ( rightDia | bit) << 1)` as a my point of view this last statement is most difficult to be understood in this entire function so let’s first break it to understand.
+ - `>>1` and `<<1` are the right shift and left shift operators respectively which moves a bit to right or left. `(rightDia | bit) >> 1` means combine `rightDia` and `bit` apply OR operation and then left shift by 1 bit.
+ - More specifically, if `rightDia` is `0001` (meaning that the top-right-to-bottom-left diagonal through column 4 of the current row is occupied), and `bit` is `0100` (meaning that we are planning to place a queen in column 2 of the current row), `(rd|bit)` results in `0101` (meaning that after we place a queen in column 2 of the current row, the second and the fourth top-right-to-bottom-left diagonals will be occupied).
  - Now, if add in the `<<` operator, we get `(rd|bit)<<1`, which takes the `0101` we worked out in our previous bullet point, and moves everything to the left by one. The result, therefore, is `1010`.
  - *Now important question is why we are shifting all these values?*
  - The answer is when we put a queen on a square we move down to the different rows at that time we need our left and right diagonals to be up to date.
