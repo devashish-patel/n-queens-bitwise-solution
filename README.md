@@ -28,26 +28,26 @@ c) Right diagonal doesn’t have more than one queen
 - For example…
 For N=4, `col` having a value of `0010` would mean that the 3rd column is already occupied by a queen
 
-#####  **THE DONE VARIEBLE**
+#####  **THE DONE VARIEBLE** _(Line)_
  - The "done" variable simply allows me to not worry about any bits beyond the Nth. Most computers are either 32 bits or 64 bits, so in reality, all integers are stored with that many bits. done simply has a bit sequence with 1 for every entry up to the Nth. For example, when N=5, done will equal `11111`.
 
-#####  **INNER RECURSION FUNCTION**
+#####  **INNER RECURSION FUNCTION** _(Line)_
  - First of all I’m calling innerRecursion(0, 0, 0), that means I’m calling function with all arguments from position 0. If N=4, we can say all arguments being equal to `0000`. Means we haven’t placed any queens yet.
 
-#####  **THE FIRST IF STATEMENT**
+#####  **THE FIRST IF STATEMENT** _(Line)_
  - This is a base condition for the function which checks whether the solution is found or not!!
  - It checks it whether all the columns are occupied or not in each calling of function.
  - Our algorithm never places queens wrong so we can check if all columns are filled then we have a valid solution.
  
-#####  **CONST POSS**
+#####  **CONST POSS** _(Line)_
  - The poss variable shows the columns in the current row which are not under attack of any queen.
  - Suppose after some iterations we have `leftDia` = `0001`, `rightDia` = `0101`, col = 1001 and we are doing OR operation on them so we’ll get `1101` and at last by adding `~` we are flipping the bits so we’ll get `0010`.
 
-#####  **FIRST TWO STATEMENTS IN THE WHILE LOOP**
+#####  **FIRST TWO STATEMENTS IN THE WHILE LOOP** _(Line)_
  - First statement `let bit = poss & -poss` stores the first available position means first non-zero position from the poss and stores it in `bit`.
  - So we are placing our queen on that available position, so the next statement `poss -= bit` will mark that position as occupied and change the bit as ‘1’.
 
-#####  **LAST STATEMENT IN THE WHILE LOOP**
+#####  **LAST STATEMENT IN THE WHILE LOOP** _(Line)_
  - ` innerRecursion( (leftDia|bit) >> 1, col | bit, ( rightDia | bit) << 1)` as a my point of view this last statement is most difficult to be understood in this entire function so let’s first break it to understand.
  - `>>1` and `<<1` are the right shift and left shift operators respectively which moves a bit to right or left. `(rightDia | bit) >> 1` means combine `rightDia` and bit apply OR operation and then left shift by 1 bit.
  - More specifically, if `rightDia` is `0001` (meaning that the top-right-to-bottom-left diagonal through column 4 of the current row is occupied), and bit is `0100` (meaning that we are planning to place a queen in column 2 of the current row), `(rd|bit)` results in `0101` (meaning that after we place a queen in column 2 of the current row, the second and the fourth top-right-to-bottom-left diagonals will be occupied).

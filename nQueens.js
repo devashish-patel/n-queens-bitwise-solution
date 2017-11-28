@@ -9,8 +9,7 @@ countNQueensSolutions = (n) => {
   innerRecursion = (leftDia, col, rightDia) => {
       
     //Base condition
-    //All columns are occupied,
-    //so the solution must be complete
+    //All columns are occupied, so the solution must be complete
     if (col === done) {
       count++;
       return;
@@ -28,11 +27,8 @@ countNQueensSolutions = (n) => {
       innerRecursion((leftDia|bit)>>1, col|bit, (rightDia|bit)<<1);
     }
   };
-
   innerRecursion(0,0,0);
-
   return count;
 };
 
-const result  = countNQueensSolutions(10);
-console.log(result);
+console.log(countNQueensSolutions(10));
